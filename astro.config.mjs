@@ -24,5 +24,5 @@ export default defineConfig({
 		}),
 	],
 	site: 'https://serhiibutryk.github.io',
-	//base: '/StartlightDocs',
+	base: '/StartlightDocs',
 });
