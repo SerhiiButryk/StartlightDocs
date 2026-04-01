@@ -1,12 +1,6 @@
-# Starlight Starter Kit: Basics
+# 🏄🏻 Home page 🏄🏻‍♂️
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
-
-```
-npm create astro@latest -- --template starlight
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+https://serhiibutryk.github.io/StartlightDocs/
 
 ## 🚀 Project Structure
 
