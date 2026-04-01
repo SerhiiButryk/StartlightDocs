@@ -7,20 +7,23 @@ A quick reference for the developers, collecting useful links, tools, and platfo
 
 ## Code search engins
 
-- Android OS;
+- Android OS
+
 [android](https://cs.android.com/)
 
-- Whatever you wanna look for; 
+- Whatever you wanna look for
+
 [sourcegraph](https://sourcegraph.com/search) 
+
 [tabnine](https://www.tabnine.com/code)
 
-## Android platform 🏝
+## Android platform
 
 - OS/Application debugging
 
 TO ADD
 
-- KMP Github public samples and referneces;
+- KMP Github public samples and referneces
 
 [KMP Github](https://github.com/terrakok/kmp-awesome)
 
@@ -43,25 +46,28 @@ TO ADD
 - Tutorials about mobile development
 
 [tur1](https://www.tinkoff.ru/career/it/interview/mobile/)
+
 [tur2](https://github.com/androiddevnotes/awesome-android-learning-resources)
+
 [tur3](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
 
-## JVM 🏝
+## JVM
 
 - Internals
 
 [int1](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
+
 [int2](https://blog.jamesdbloom.com/JVMInternals.html)
 
 [specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
 
-## Interview 🏝
+## Interview
 
 - Question list
 
 [list](https://dou.ua/lenta/articles/interview-questions-android-developer/)
 
-## System debugging tools 🏝
+## System debugging tools
 
 - Decompilers
 
@@ -79,13 +85,13 @@ https://www.charlesproxy.com/
 Wireshark
 https://www.wireshark.org/ 
 
-## Cryptography 🍓
+## Cryptography
 
 - Overview
 
 https://garykessler.net/library/crypto.html
 
-## Linux 🏝
+## Linux
 
 - Overview
 
