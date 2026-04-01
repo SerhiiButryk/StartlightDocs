@@ -23,6 +23,6 @@ export default defineConfig({
 			],
 		}),
 	],
-	site: 'https://serhiibutryk.github.io',
+	site: 'https://serhiibutryk.github.io/StartlightDocs',
 	base: '/StartlightDocs',
 });
