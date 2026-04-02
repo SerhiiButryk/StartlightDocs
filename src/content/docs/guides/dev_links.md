@@ -13,9 +13,7 @@ A quick reference for the developers, collecting useful links, tools, and platfo
 
 ## Android platform 🤖
 
-OS/Application debugging
-
-1. [APK tool](https://apktool.org/)
+1. [APK tool](https://apktool.org/) - apk debugging
 
 2. [KMP Github](https://github.com/terrakok/kmp-awesome) - KMP Github public samples and referneces
 
@@ -27,11 +25,11 @@ OS/Application debugging
 
 6. [Privacy policy generator](https://www.privacypolicygenerator.info/) - policy generator for Google Play
 
-7. Tutorials about mobile development
+Tutorials about mobile development
 
-    1. [Mobile dev resources](https://www.tinkoff.ru/career/it/interview/mobile/)
-    2. [Android Github reources](https://github.com/androiddevnotes/awesome-android-learning-resources)
-    3. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
+1. [Mobile dev resources](https://www.tinkoff.ru/career/it/interview/mobile/)
+2. [Android Github reources](https://github.com/androiddevnotes/awesome-android-learning-resources)
+3. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
 
 ## JVM ✨
 
@@ -40,10 +38,6 @@ OS/Application debugging
 2. [JVM internals](https://blog.jamesdbloom.com/JVMInternals.html)
 
 3. [JVM specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
-
-## Interview
-
-1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list
 
 ## System debugging tools 🔍
 
@@ -74,8 +68,12 @@ OS/Application debugging
 
 ## AI ✨
 
-1. [Video](https://www.vidnoz.com/image-to-video-ai.html)
+1. [Photo-to-Video](https://www.vidnoz.com/image-to-video-ai.html)
 
 ## Basic knowledge ✨
 
 1. [UML](https://www.youtube.com/watch?v=xObBUVDMbQs) , [Plant UML](https://real-world-plantuml.com/)
+
+## Interview ✨
+
+1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list
