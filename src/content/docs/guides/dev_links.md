@@ -5,118 +5,77 @@ description: A devloper links of common dev tools and sites.
 
 A quick reference for the developers, collecting useful links, tools, and platform notes in one place. Keep this page as your go-to guide for fast access to common resources and workflow shortcuts.
 
-## Code search engins
+## Code search engins 🔍
 
-- Android OS
+1. [android](https://cs.android.com/) - Android OS
 
-[android](https://cs.android.com/)
+3. [sourcegraph](https://sourcegraph.com/search) - Whatever you want
 
-- Whatever you wanna look for
+## Android platform 🤖
 
-[sourcegraph](https://sourcegraph.com/search) 
+OS/Application debugging
 
-[tabnine](https://www.tabnine.com/code)
+1. [APK tool](https://apktool.org/)
 
-## Android platform
+2. [KMP Github](https://github.com/terrakok/kmp-awesome) - KMP Github public samples and referneces
 
-- OS/Application debugging
+3. [Compose](https://lhwdev.github.io/note/compose/how-it-works/) - Compose
 
-TO ADD
+4. [File descriptors](https://developpaper.com/https://www.sdgsystems.com/post/android-memory-and-file-descriptor-leaks-diagnosis-and-debugging) - File descriptors
 
-- KMP Github public samples and referneces
+5. [Binder and AIDL](https://sujaiantony.wordpress.com/2011/12/28/an-android-101-an-overview-on-binder-framework/) - Binder and AIDL
 
-[KMP Github](https://github.com/terrakok/kmp-awesome)
+6. [Privacy policy generator](https://www.privacypolicygenerator.info/) - policy generator for Google Play
 
-- Compose;
+7. Tutorials about mobile development
 
-[Compose](https://lhwdev.github.io/note/compose/how-it-works/)
+    1. [Mobile dev resources](https://www.tinkoff.ru/career/it/interview/mobile/)
+    2. [Android Github reources](https://github.com/androiddevnotes/awesome-android-learning-resources)
+    3. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
 
-- File descriptors;
+## JVM ✨
 
-[File descriptors](https://developpaper.com/an-article-helps-you-understand-android-file-descriptors/)
+1. [JVM overview](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
 
-- Binder and AIDL
+2. [JVM internals](https://blog.jamesdbloom.com/JVMInternals.html)
 
-[Binder and AIDL](https://sujaiantony.wordpress.com/2011/12/28/an-android-101-an-overview-on-binder-framework/)
-
-- Google Play policy generator
-
-[policy generator](https://www.termsfeed.com/privacy-policy-generator/)
-
-- Tutorials about mobile development
-
-[tur1](https://www.tinkoff.ru/career/it/interview/mobile/)
-
-[tur2](https://github.com/androiddevnotes/awesome-android-learning-resources)
-
-[tur3](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
-
-## JVM
-
-- Internals
-
-[int1](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
-
-[int2](https://blog.jamesdbloom.com/JVMInternals.html)
-
-[specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
+3. [JVM specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
 
 ## Interview
 
-- Question list
+1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list
 
-[list](https://dou.ua/lenta/articles/interview-questions-android-developer/)
+## System debugging tools 🔍
 
-## System debugging tools
+1. Decompilers
 
-- Decompilers
+    1. [IDA](https://hex-rays.com/ida-free)
+    1. [Ghidra](https://ghidralite.com/)
 
-- Network
+2. Network
 
-Har viewer
-http://www.softwareishard.com/har/viewer/
+    1. [Har viewer](http://www.softwareishard.com/har/viewer/)
+    2. [Postman](https://www.postman.com/)
+    3. [Chales Http Proxy](https://www.charlesproxy.com/)
+    4. [Wireshark](https://www.wireshark.org/ )
 
-POSTMAN
-https://www.postman.com/ 
+    1. [TCP/IP](https://garykessler.net/library/tcpip.html)
+    2. [IPv6](https://garykessler.net/library/ipv6_exp.html)
 
-Chales
-https://www.charlesproxy.com/
+## Cryptography ✨
 
-Wireshark
-https://www.wireshark.org/ 
+1. [Overview](https://garykessler.net/library/crypto.html)
 
-## Cryptography
+## Linux ✨
 
-- Overview
+1. [Overview](http://linuxintro.org/wiki/Main_Page)
 
-https://garykessler.net/library/crypto.html
+2. [Shell (Bash) tutorials](https://tldp.org/LDP/abs/html/index.html) , [Bash cheet-sheet](https://devhints.io/bash)
 
-## Linux
+## AI ✨
 
-- Overview
+1. [Video](https://www.vidnoz.com/image-to-video-ai.html)
 
-http://linuxintro.org/wiki/Main_Page
+## Basic knowledge ✨
 
-- Shell (Bash) tutorials
-
-Docs: https://tldp.org/LDP/abs/html/index.html
-Quick cheet-sheets: https://devhints.io/bash
-
-- Networking
-
-https://garykessler.net/library/tcpip.html
-https://garykessler.net/library/ipv6_exp.html
-
-## AI tools
-
-- Video
-
-https://www.vidnoz.com/image-to-video-ai.html
-
-## Basic knowledge
-
-- UML
-
-https://www.youtube.com/watch?v=xObBUVDMbQs
-https://real-world-plantuml.com/
-
+1. [UML](https://www.youtube.com/watch?v=xObBUVDMbQs) , [Plant UML](https://real-world-plantuml.com/)
