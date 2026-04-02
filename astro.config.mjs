@@ -17,7 +17,7 @@ export default defineConfig({
 						{ label: 'Miscellaneous links', slug: 'guides/dev_links' },
 						
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Dev Tools', slug: 'guides/dev_doc' },
+						{ label: 'Unix tools', slug: 'guides/dev_doc' },
 
 					],
 				},

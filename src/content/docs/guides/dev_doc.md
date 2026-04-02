@@ -44,7 +44,7 @@ $ ls -l /proc/pid/fd
 # Show running JVM instances
 $ ps -ef | grep java
 
-# View a process and use a custom output format
+# View a process using a custom output format
 $ ps -L -o pid,tid,state,time,%cpu,%mem,start_time 10427
 ```
 
@@ -74,10 +74,10 @@ $ openssl x509 -in ca.crt -noout -text
 # Create a CA certificate from a private key
 $ openssl req -new -x509 -sha256 -key pkey.pem -out ca.crt -days 3650
 
-# Create a CSR for the Certificate Authority (CA)
+# Create a CSR for a certificate authority
 $ openssl req -new -key client_private.key -out client_request.csr
 
-# Issue a new certificate based on a CSR
+# Issue a new certificate from a CSR
 $ openssl x509 -req -in client_request.csr -CA ca.crt -CAkey ca_private.key -out client.crt -days 365 -sha256
 ```
 
@@ -87,7 +87,7 @@ $ openssl x509 -req -in client_request.csr -CA ca.crt -CAkey ca_private.key -out
 
 ```bash
 # Show symbols
-# List symbols of an object or executable file
+# List symbols from an object or executable file
 $ nm -g -C --defined-only *.o
 $ nm a.out | c++filt -t | less
 $ nm -a a.out | c++filt
@@ -98,7 +98,7 @@ $ nm -gDC lib_name.so | grep --color symbol_name
 
 ## Mac C/C++ Debugger
 
-Tell lldb where the source code is. The debugger will use it for all matching references.
+Tell LLDB where the source code is. The debugger uses it for all matching references.
 
 ```bash
 $ (lldb) settings set target.source-map /build/dir/path /my/local/source/path
@@ -125,7 +125,7 @@ Example:
 /home/serhii/Android/Sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/linux-x86_64/bin
 :::
 
-2. Find the location of your .so library that you want to check.
+2. Find the location of the .so library you want to check.
 
 Run the command and specify the file name you want to inspect.
 
@@ -166,5 +166,210 @@ Inspect simple variables:
 ```bash
 $ (lldb) p
 $ (lldb) po
+```
+
+## awk
+
+[man page](https://man7.org/linux/man-pages/man1/awk.1p.html)
+
+```bash
+# Output only 1 field from a line
+$ cat test.txt | awk '{print $1}'
+```
+
+## curl
+
+[man page](https://man7.org/linux/man-pages/man1/curl.1.html)
+
+POST request:
+
+```bash
+$ curl -X POST --form "file=@1.txt" -v http://example.com
+```
+
+POST request:
+
+```bash
+$ curl -X POST -H "Authorization: Bearer <token>" http://example.com -v -d 'post_body'
+```
+
+Kerberos auth:
+
+```bash
+$ curl -v -k --negosiate -u user_name:pass http://example.com
+```
+
+NTLM auth:
+
+```bash
+$ curl -v -k --ntlm -u user_name:pass http://example.com
+```
+
+Download a file:
+
+```bash
+curl -o filename.txt https://reqbin.com/echo
+```
+
+Connect with proxy:
+
+```bash
+$ curl -x localhost:8888 -k http://example.com
+```
+
+## ADB (Android debugging tool)
+
+CPU usage:
+
+```bash
+adb shell dumpsys cpuinfo
+adb shell "top -n 1"
+```
+
+Activity stack:
+
+```bash
+adb shell dumpsys activity top | grep --color -A 4 "ACTIVITY"
+```
+
+APK locations:
+
+Internal storage: /data/app/app.package.name-t2tip43AexOplAoWlN1KCQ==/base.apk
+System storage: /data/data/app.package.name
+External storage: /Android/data/app.package.name
+
+Unlock bootloader:
+
+Settings -> OEM unlocking -> ON
+
+```bash
+adb reboot bootloader
+fastboot oem lock
+fastboot oem unlock
+fastboot reboot
+```
+
+Install APK in workspace:
+
+```bash
+adb shell pm list users
+adb install -r --user 18 internal-debug-work.apk
+```
+
+CPU ABI check:
+
+```bash
+adb shell getprop ro.product.cpu.abi
+```
+
+Sign APK:
+
+```bash
+/Library/Android/sdk/build-tools/30.0.0/apksigner sign --ks /Desktop/key AppKinetics-App-debug.apk
+```
+
+Uninstall a package:
+
+```bash
+adb uninstall <package-name>
+```
+
+List packages:
+
+```bash
+adb shell pm list packages
+```
+
+Current activity:
+
+```bash
+adb shell dumpsys window windows | grep -E 'mCurrentFocus|mFocusedApp'
+```
+
+Grant permissions:
+
+```bash
+adb shell pm grant [package name] [permission name]
+adb shell pm grant uk.co.richyhbm.monochromatic android.permission.WRITE_SECURE_SETTINGS
+```
+
+Text input:
+
+```bash
+adb shell input text
+```
+
+Force-stop app:
+
+```bash
+adb shell am force-stop <PACKAGE>
+```
+
+Current API version:
+
+```bash
+adb shell getprop | grep ro.build.version
+```
+
+Launch activity:
+
+```bash
+adb shell am start -n yourpackagename/.activityname
+```
+
+Device rotation:
+
+```bash
+adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:0
+```
+
+Reboot device:
+
+```bash
+adb reboot
+```
+
+Rotation:
+
+```bash
+adb shell content insert --uri content://settings/system --bind name:s:accelerometer_rotation --bind value:i:0
+adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:1
+adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:0
+```
+
+Key event:
+
+```bash
+adb shell input keyevent 82
+```
+
+Enable apps from unknown sources:
+
+```bash
+adb shell settings put global verifier_verify_adb_installs 0
+```
+
+Uninstall app from work profile:
+
+List users:
+
+```bash
+adb shell pm list users
+```
+
+Find app:
+
+```bash
+adb shell pm list packages --user 10 | grep "rim"
+```
+
+Remove work profile:
+
+Settings -> Accounts -> Remove work profile
+
+App verification:
+
+```bash
+adb shell settings put global verifier_verify_adb_installs 0
 ```
 
