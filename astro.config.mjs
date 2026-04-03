@@ -15,9 +15,8 @@ export default defineConfig({
 						
 						// Each item here is one entry in the navigation menu.
 						{ label: 'Miscellaneous links', slug: 'guides/dev_links' },
-						
-						// Each item here is one entry in the navigation menu.
 						{ label: 'Unix tools', slug: 'guides/dev_doc' },
+						{ label: 'Encoding (Charsets)', slug: 'guides/encoding_doc' },
 
 					],
 				},
