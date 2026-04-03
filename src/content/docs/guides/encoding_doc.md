@@ -1,0 +1,98 @@
+---
+title: Encoding and character sets
+description: Encoding and character sets
+---
+
+## Hex codes
+
+As a reminder, we will usually work with the hexadecimal system. We should keep a hex code table nearby for reference.
+
+| Hex          | Binary         |
+| :----------- | :------------: |
+| 0            |      0000      |
+| 1            |      0001      |
+| 2            |      0010      |
+| 3            |      0011      |
+| 4            |      0100      |
+| 5            |      0101      |
+| 6            |      0110      |
+| 7            |      0111      |
+| 8            |      1000      |
+| 9            |      1001      |
+| A            |      1010      |
+| B            |      1011      |
+| C            |      1100      |
+| D            |      1101      |
+| E            |      1110      |
+| F            |      1111      |
+
+## Utf-8
+
+UTF-8 encodes characters using 1-byte, 2-byte, 3-byte, or 4-byte sequences depending on the Unicode code point value.
+
+Here is the table which highlights the main structure of the encoding:
+
+|  First code point| Last code point  |	Byte 1	    | Byte 2	     |  Byte 3	    | Byte 4         |
+| :--------------- | :--------------: |:----------- | :------------: | :----------- | :------------: |
+| U+0000	       | U+007F	          |  0yyyzzzz	|                |              |                |
+| U+0080	       | U+07FF	          |  110xxxyy	| 10yyzzzz       |   	        |                |
+| U+0800	       | U+FFFF	          |  1110wwww	| 10xxxxyy	     | 10yyzzzz	    |                |
+| U+010000	       | U+10FFFF	      |  11110uvv	| 10vvwwww	     | 10xxxxyy	    | 10yyzzzz       |
+
+Let's understand this table.
+
+:::note
+UTF-8 was intentionally designed to be backward-compatible with ASCII. In the range 0x00 through 0x7F (0–127), 
+the binary representation of a character in UTF-8 is identical to its representation in ASCII
+:::
+
+1) **The 1-Byte Range (U+0000 - U+007F)**
+
+The first bit must be 0. This leaves 7 bits for data encoding. Now let's understand the range:
+
+U+0000 - U+007F = 0000 0000 - 0111 1111 = 0-127
+
+Doesn't it make sense now? Yes, it does! Now you see why the range is like this.
+
+2) **The 2-Byte Range (U+0080 - U+07FF)**
+
+The first byte starts with 110, and the second starts with 10. This leaves 11 bits (16 - 5 = 11). Now let's understand the range:
+
+U+0080 - U+07FF = 0000 0000 1000 0000 - 0000 0111 1111 1111 = 128 - 2047
+
+The same principle applies here.
+
+3) **The 3-Byte Range (U+0800 - U+FFFF)**
+
+The first byte starts with 1110. The second and third bytes start with 10. This leaves 16 bits (24 - 8 = 16). Now let's understand the range:
+
+U+0800 - U+FFFF = 0000 0000 0000 1000 0000 0000 - 0000 0000 1111 1111 1111 1111 = 2048 - 65535
+
+The same.
+
+4) **The 4-Byte Range (U+010000 - U+10FFFF)**
+
+The first byte starts with 11110. The second, third, and fourth bytes start with 10. This leaves 21 bits (32 - 11 = 21). Now let's understand the range:
+
+U+010000 - U+10FFFF = 0000 0000 0000 0001 0000 0000 0000 0000 - 0000 0000 0001 0000 1111 1111 1111 1111 = 65536 - 1,114,111
+
+The same.
+
+## Utf-16
+
+A character is either 2 bytes or 4 bytes long. The first 2 bytes of a file indicate the UTF-16 byte order (encoding).
+
+'FE FF' - UTF-16 Big-Endian - the most significant byte comes first. 
+
+'FF FE' - UTF-16 Little-Endian - the least significant byte comes first.
+
+1. The 2-Byte Characters, the Basic Multilingual Plane (The BMP)
+
+For these, a character is exactly 2 bytes (16 bits) long.
+
+**Range:** U+0000 - U+FFFF
+
+2. Surrogate pairs (for code points above U+FFFF)
+
+This uses a special mechanism to represent 4-byte code points via surrogate pairs in UTF-16.
+
