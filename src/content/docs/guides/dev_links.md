@@ -5,13 +5,13 @@ description: A devloper links of common dev tools and sites.
 
 A quick reference for the developers, collecting useful links, tools, and platform notes in one place. Keep this page as your go-to guide for fast access to common resources and workflow shortcuts.
 
-## Code search engins 🔍
+## Code search engins
 
 1. [android](https://cs.android.com/) - Android OS
 
 3. [sourcegraph](https://sourcegraph.com/search) - Whatever you want
 
-## Android platform 🤖
+## Android platform
 
 1. [APK tool](https://apktool.org/) - apk debugging
 
@@ -31,7 +31,7 @@ Tutorials about mobile development
 2. [Android Github reources](https://github.com/androiddevnotes/awesome-android-learning-resources)
 3. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
 
-## JVM ✨
+## JVM
 
 1. [JVM overview](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
 
@@ -39,7 +39,7 @@ Tutorials about mobile development
 
 3. [JVM specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
 
-## System debugging tools 🔍
+## System debugging tools
 
 1. Decompilers
 
@@ -56,24 +56,24 @@ Tutorials about mobile development
     1. [TCP/IP](https://garykessler.net/library/tcpip.html)
     2. [IPv6](https://garykessler.net/library/ipv6_exp.html)
 
-## Cryptography ✨
+## Cryptography
 
 1. [Overview](https://garykessler.net/library/crypto.html)
 
-## Linux ✨
+## Linux
 
 1. [Overview](http://linuxintro.org/wiki/Main_Page)
 
 2. [Shell (Bash) tutorials](https://tldp.org/LDP/abs/html/index.html) , [Bash cheet-sheet](https://devhints.io/bash)
 
-## AI ✨
+## AI
 
 1. [Photo-to-Video](https://www.vidnoz.com/image-to-video-ai.html)
 
-## Basic knowledge ✨
+## Basic knowledge
 
 1. [UML](https://www.youtube.com/watch?v=xObBUVDMbQs) , [Plant UML](https://real-world-plantuml.com/)
 
-## Interview ✨
+## Interview
 
 1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list

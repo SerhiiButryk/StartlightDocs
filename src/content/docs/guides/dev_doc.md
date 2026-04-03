@@ -234,15 +234,13 @@ adb shell dumpsys activity top | grep --color -A 4 "ACTIVITY"
 
 APK locations:
 
-Internal storage: /data/app/app.package.name-t2tip43AexOplAoWlN1KCQ==/base.apk
+**Internal storage**: /data/app/app.package.name-t2tip43AexOplAoWlN1KCQ==/base.apk
 
-System storage: /data/data/app.package.name
+**System storage**: /data/data/app.package.name
 
-External storage: /Android/data/app.package.name
+**External storage**: /Android/data/app.package.name
 
-Unlock bootloader:
-
-Settings -> OEM unlocking -> ON
+Unlock bootloader (Settings -> OEM unlocking -> ON):
 
 ```bash
 adb reboot bootloader
@@ -375,7 +373,7 @@ App verification:
 adb shell settings put global verifier_verify_adb_installs 0
 ```
 
-## Find
+## find
 
 [man page](https://man7.org/linux/man-pages/man1/find.1.html)
 
@@ -702,7 +700,6 @@ Example of string patterns:
 
 ```bash
 ./gradlew installDebug
-
 ./gradlew assembleDebug 
 ./gradlew assembleRelease
 ```
