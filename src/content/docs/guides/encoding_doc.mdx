@@ -104,21 +104,23 @@ This uses a special mechanism to represent 4-byte code points via surrogate pair
 
 ## Debugging
 
-Display content of a file in hex format
-
 [od man page](https://man7.org/linux/man-pages/man1/od.1.html)
+[hexdump man page](https://man7.org/linux/man-pages/man1/hexdump.1.html)
+
+Display content of a file in hex format
 
 ```bash
 $ od -a -A x -t x1 new.txt
 ```
-
-[hexdump man page](https://man7.org/linux/man-pages/man1/hexdump.1.html)
+Result:
 
 <Image src={s1} alt="Result:" width="600" />
 
 ```bash
 cat text.txt | hexdump -C text.txt
 ```
+
+Result:
 
 <Image src={s2} alt="Result:" width="600" />
 
@@ -128,7 +130,7 @@ Convert a content of a file from utf-8 to utf-16 format encoding
 $ iconv -f utf-16 -t utf-8 text.txt > new8.txt
 ```
 
-Using this tools we can analyse encoding issue in our code 🙂
+Using this tools we can analyse encoding issues in our code 🙂
 
 
 
