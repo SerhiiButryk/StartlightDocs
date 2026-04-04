@@ -3,6 +3,10 @@ title: Encoding and character sets
 description: Encoding and character sets
 ---
 
+import { Image } from 'astro:assets';
+import s1 from './assets/s1.png';
+import s2 from './assets/s2.png';
+
 ## Hex codes
 
 As a reminder, we will usually work with the hexadecimal system. We should keep a hex code table nearby for reference.
@@ -110,17 +114,11 @@ $ od -a -A x -t x1 new.txt
 
 [hexdump man page](https://man7.org/linux/man-pages/man1/hexdump.1.html)
 
-import { Image } from 'astro:assets';
-import s1 from './assets/s1.png';
-
 <Image src={s1} alt="Result:" width="600" />
 
 ```bash
 cat text.txt | hexdump -C text.txt
 ```
-
-import { Image } from 'astro:assets';
-import s2 from './assets/s2.png';
 
 <Image src={s2} alt="Result:" width="600" />
 
