@@ -1,6 +1,6 @@
 ---
-title: Debugging and decompiling Android apk file 
-description: Debugging and decompiling Android apk file
+title: Debugging and decompiling Android APK files
+description: Debugging and decompiling Android APK files
 ---
 
 ## Decompile and rebuild apk
@@ -11,32 +11,36 @@ description: Debugging and decompiling Android apk file
 $ curl -o android.py https://github.com/SerhiiButryk/DevelopmentTools/blob/main/tools/android.py
 ```
 
-2. Grant exec permission for 'android.py' tool
+2. Grant execute permissions to 'android.py' tool
 
 ```bash
 $ chmod +x android.py
 ```
 
-3. Assuming you put 'android.py' tool in the same folder with your apk file, decompile your apk
+3. Assuming you placed 'android.py' in the same directory as your APK file, decompile your APK:
 
 ```bash
 $ android.py -decomp <your file name>.apk
 ```
 
-Wait while the tool downloads all necesary dependencies. If no errors, check out 'output' directory.
+Wait while the tool downloads all necessary dependencies. If there are no errors, check the 'output' directory.
 
-4. Modify sources.
+4. Modify sources
 
-5. Rebuild apk 
-
-```bash
-$ android.py -decomp <your file name>.apk
-```
-
-6. Resign your apk
+5. Rebuild APK
 
 ```bash
-$ android.py -resign-apk modified.apk
+$ android.py -build <your file name>.apk
 ```
 
-7. Install apk and enjoy ! 🙂
+6. Sign your APK
+
+```bash
+$ android.py -resign-apk <your file name>.apk
+```
+
+7. Install the APK and enjoy!
+
+```bash
+$ adb install <your file name>.apk
+```
