@@ -30,7 +30,7 @@ Wait while the tool downloads all necessary dependencies. If there are no errors
 5. Rebuild APK
 
 ```bash
-$ android.py -build <your file name>.apk
+$ android.py -build <your folder with modified apk>
 ```
 
 6. Sign your APK
