@@ -871,3 +871,13 @@ Get certificate signing hash from key store
 ```bash
 $ keytool -list -v -keystore NAME_OF_KEYSTORE -alias KEY_ALIAS
 ```
+
+## javap
+
+[doc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javap.html)
+
+Disassample a class file
+
+```bash
+$ javap -v -p -s -sysinfo -constants <file name>.class
+```
