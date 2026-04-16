@@ -17,7 +17,7 @@ Did you know lambda and anonimus classes have different runtime cost?
 
 Let's dive deeper and find out why it happens. 
 
-# Anonimus classes:
+# Anonimus classes
 
 Let's create a 'Test.kt' file with the source code:
 
@@ -117,6 +117,130 @@ So, let's sum up what we saw so far:
 2) The anonimus class creation means creation a new instance of special compile generated class
 
 # Lambda in Kotlin
+
+Now let's create a lambda. This is our new source code:
+
+```kotlin
+fun interface Listener {
+    fun call()
+    fun message() = "Hello"
+}
+
+class A {
+    private var listener: Listener? = null
+
+    fun addListener(listener: Listener) {
+        this.listener = listener
+    }
+
+    fun call() {
+        listener?.message()
+    }
+}
+
+fun main() {
+
+    val a = A()
+
+    // Creates a lambda
+    val listener = Listener {
+        println("Hello this is my message")
+    }
+
+    a.addListener(listener)
+
+    a.call()
+
+}
+```
+
+Now let's check the bytecode:
+
+```kotlin
+import kotlin.Metadata;
+
+/* JADX INFO: renamed from: TestKt, reason: from Kotlin metadata */
+/* JADX INFO: compiled from: Test.kt */
+/* JADX INFO: loaded from: TestKt.class */
+@Metadata(mv = {2, 2, 0}, k = 2, xi = 48, d1 = {"\u0000\b\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001¨\u0006\u0002"}, d2 = {"main", "", "Test"})
+public final class main {
+    public static final void main() {
+        A a = new A();
+        Listener listener = main::main$lambda$0;
+        a.addListener(listener);
+        a.call();
+    }
+
+    private static final void main$lambda$0() {
+        System.out.println((Object) "Hello this is my message");
+    }
+}
+```
+
+Hang on! What is the 'main::main$lambda$0' piece of code? It makes more sence if we check the smali code:
+
+```kotlin
+.method public static final main()V
+    .max stack 2
+    .max locals 2
+
+    .line 20
+    new A
+    dup
+    invokespecial A <init> ()V
+    astore 0
+    .local 0 "a" LA;
+    .line 23
+    invokedynamic call ()LListener;
+        .handle invoke-static java/lang/invoke/LambdaMetafactory metafactory (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+        .arg 0 .methodtype ()V
+        .arg 1 .handle invoke-static TestKt main$lambda$0 ()V
+        .arg 2 .methodtype ()V
+    .end invokedynamic
+    astore 1
+    .local 1 "listener" LListener;
+    .line 27
+    aload 0
+    aload 1
+    invokevirtual A addListener (LListener;)V
+    .line 29
+    aload 0
+    invokevirtual A call ()V
+    .line 31
+    return
+.end method
+```
+
+Notice 'invokedynamic' instraction which ends with '.end invokedynamic' section. This is the magic!
+
+There is a special static 'LambdaMetafactory.metafactory' method which gets called with some arguments to get a very 
+
+special object which is the 'CallSite' object. Below you can see the 'invokevirtual A call ()V' which is a simple function call.
+
+So, let's sum up what we saw so far:
+
+1. No extra class file 
+
+2. Point of lambda creation is a point of some special handling.
+
+3. The next call (to lambda function) is a simple function call 
+
+Basically the 'LambdaMetafactory.metafactory' method is a one time call. It links a code with a lambda to a special 'CallSite' object
+
+which is able to refenece and coll the code of our lambda.
+
+Wait!! Where is the code of out lamda ? 
+
+Here it is:
+
+```kotlin
+private static final void main$lambda$0() {
+        System.out.println((Object) "Hello this is my message");
+    }
+```
+
+This is the code which will be called in the end.
+
 
 
 
