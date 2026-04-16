@@ -1,0 +1,126 @@
+---
+title: Kotlin bytecode
+description: Kotlin bytecode
+---
+
+import { Image } from 'astro:assets';
+import s3 from '../../../assets/s3.png';
+import s4 from '../../../assets/s4.png';
+
+## Introduction
+
+This guide covers the most interesting topics of Kotlin internals. It's a bit deeper dive in Kotlin code.
+
+## Lambda vs anonimus Kotlin classes
+
+Did you know lambda and anonimus classes have different runtime cost?
+
+Let's dive deeper and find out why it happens. 
+
+# Anonimus classes:
+
+Let's create a 'Test.kt' file with the source code:
+
+```kotlin
+fun interface Listener {
+    fun call()
+    fun message() = "Hello"
+}
+
+class A {
+    private var listener: Listener? = null
+
+    fun addListener(listener: Listener) {
+        this.listener = listener
+    }
+
+    fun call() {
+        listener?.message()
+    }
+}
+
+fun main() {
+
+    val a = A()
+
+    // Creates an anonimus class
+    a.addListener(object : Listener {
+        override fun call() {
+            println("Hello this is my message")
+        }
+    })
+
+    a.call()
+
+}
+```
+
+Let's check what compile will generate.
+
+First of all we can see that a new 'TestKt$main$1.class' class file gets created.
+It contains the code of the anonimus class that we created:
+
+<Image src={s3} alt="Result:" width="600" />
+
+Decompiled bytecode:
+
+```kotlin
+import kotlin.Metadata;
+
+/* JADX INFO: compiled from: Test.kt */
+/* JADX INFO: loaded from: TestKt$main$1.class */
+@Metadata(mv = {2, 3, 0}, k = 1, xi = 48, d1 = {"\u0000\u0011\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0002\n\u0000*\u0001\u0000\b\n\u0018\u00002\u00020\u0001J\b\u0010\u0002\u001a\u00020\u0003H\u0016¨\u0006\u0004"}, d2 = {"lesson2_classes_sample/TestKt$main$1", "Llesson2_classes_sample/Listener;", "call", "", "KotlinSamples"})
+public final class TestKt$main$1 implements Listener {
+    TestKt$main$1() {
+    }
+
+    public /* bridge */ String message() {
+        return super.message();
+    }
+
+    public void call() {
+        System.out.println((Object) "Hello this is my message");
+    }
+}
+```
+
+If we check 'TestKt' bytecode:
+
+Decompiled bytecode:
+
+```kotlin
+import kotlin.Metadata;
+
+/* JADX INFO: compiled from: Test.kt */
+/* JADX INFO: loaded from: TestKt.class */
+@Metadata(mv = {2, 3, 0}, k = 2, xi = 48, d1 = {"\u0000\b\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001¨\u0006\u0002"}, d2 = {"main", "", "KotlinSamples"})
+public final class TestKt {
+    public static final void main() {
+        A a = new A();
+        a.addListener(new main.1());
+        a.call();
+    }
+}
+```
+
+Then there is nothing strange. We just create the 'main.1' class which was generated.
+
+The acual smali code is also simple. I highlight only 'main()' function and the place where 
+the 'main.1' class gets created:
+
+<Image src={s4} alt="Result:" width="600" />
+
+So, let's sum up what we saw so far:
+
+1) New class file gets generated for every anonimus class
+
+2) The anonimus class creation means creation a new instance of special compile generated class
+
+# Lambda in Kotlin
+
+
+
+
+
+
+

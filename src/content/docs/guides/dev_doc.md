@@ -3,6 +3,8 @@ title: Unix tools for common dev tasks
 description: Unix tools for common dev tasks
 ---
 
+## Introduction
+
 This guide highlights essential Unix utilities and debugger commands for everyday development workflows. Use it to quickly reference powerful command-line tricks and streamline common tasks.
 
 ## xargs
@@ -876,7 +878,7 @@ $ keytool -list -v -keystore NAME_OF_KEYSTORE -alias KEY_ALIAS
 
 [doc](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javap.html)
 
-Disassample a class file
+Disassemble a class file
 
 ```bash
 $ javap -v -p -s -sysinfo -constants <file name>.class

@@ -3,6 +3,11 @@ title: Debugging and decompiling Android APK files
 description: Debugging and decompiling Android APK files
 ---
 
+## Introduction
+
+Debugging Android apps can be difficult if you are not familliar with the code or you can't modify
+apk file. This guide explains how to do it more easily.
+
 ## Decompile and rebuild apk
 
 1. Download 'android.py' tool

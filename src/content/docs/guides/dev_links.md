@@ -3,7 +3,9 @@ title: Short developer references
 description: A devloper links of common dev tools and sites.
 ---
 
-A quick reference for the developers, collecting useful links, tools, and platform notes in one place. Keep this page as your go-to guide for fast access to common resources and workflow shortcuts.
+## Introduction
+
+This guide has a quick reference for the developers, collecting useful links, tools, and notes in one place. Keep this page as your go-to guide for fast access to common resources and workflow shortcuts.
 
 ## Code search engins
 
