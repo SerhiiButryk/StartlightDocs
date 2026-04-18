@@ -105,12 +105,11 @@ public final class TestKt {
 
 Then there is nothing strange. We just create the 'main.1' class which was generated.
 
-The acual smali code is also simple. I highlight only 'main()' function and the place where 
-the 'main.1' class gets created:
+The acual smali code is also simple. I highlight only 'main()' function and the place where the 'main.1' class gets created:
 
 <Image src={s4} alt="Result:" width="600" />
 
-So, let's sum up what we saw so far:
+**So, let's sum up what we saw so far:**
 
 1) New class file gets generated for every anonimus class
 
@@ -213,11 +212,9 @@ Hang on! What is the 'main::main$lambda$0' piece of code? It makes more sence if
 
 Notice 'invokedynamic' instraction which ends with '.end invokedynamic' section. This is the magic!
 
-There is a special static 'LambdaMetafactory.metafactory' method which gets called with some arguments to get a very 
+There is a special static 'LambdaMetafactory.metafactory' method which gets called with some arguments to get a very special object which is the 'CallSite' object. Below you can see the 'invokevirtual A call ()V' which is a simple function call.
 
-special object which is the 'CallSite' object. Below you can see the 'invokevirtual A call ()V' which is a simple function call.
-
-So, let's sum up what we saw so far:
+**So, let's sum up what we saw so far:**
 
 1. No extra class file 
 
@@ -225,9 +222,7 @@ So, let's sum up what we saw so far:
 
 3. The next call (to lambda function) is a simple function call 
 
-Basically the 'LambdaMetafactory.metafactory' method is a one time call. It links a code with a lambda to a special 'CallSite' object
-
-which is able to refenece and coll the code of our lambda.
+Basically the 'LambdaMetafactory.metafactory' method is a one time call. It links a code with a lambda to a special 'CallSite' object which is able to refenece and coll the code of our lambda.
 
 Wait!! Where is the code of out lamda ? 
 
@@ -241,6 +236,103 @@ private static final void main$lambda$0() {
 
 This is the code which will be called in the end.
 
+# Summary
+
+So, you can see that there is a difference. 
+
+1. Anonimus class creates extra class file.
+
+2. Lambda has some cost during creation, but no cost after that. Usually this is the preferred way. Compile might apply more optimization here.
+
+## Lambda and local variabls
+
+You might know you can access and modify local variable from lambdas. But how it actually works ? Let's find out.
+
+First off all let's analyze this code:
+
+```kotlin
+fun main() {
+
+    var clientErrors = 0
+
+    val serverResponses = listOf("500 Internal Server Error", "404 Not Found")
+
+    fun printProblemCount() {
+        // Iterate through each http status response
+        serverResponses.forEach { element ->
+            if (element.startsWith("4")) {
+                clientErrors++
+            }
+        }
+    }
+}
+```
+
+Let's check the bytecode:
+
+```kotlin
+/* JADX INFO: compiled from: Test.kt */
+/* JADX INFO: loaded from: TestKt.class */
+@Metadata(mv = {2, 3, 0}, k = 2, xi = 48, d1 = {"\u0000\b\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001¨\u0006\u0002"}, d2 = {"main", "", "KotlinSamples"})
+@SourceDebugExtension({"SMAP\nTest.kt\nKotlin\n*S Kotlin\n*F\n+ 1 Test.kt\nlesson2_simple_class/TestKt\n+ 2 _Collections.kt\nkotlin/collections/CollectionsKt___CollectionsKt\n*L\n1#1,17:1\n1915#2,2:18\n*S KotlinDebug\n*F\n+ 1 Test.kt\nlesson2_simple_class/TestKt\n*L\n11#1:18,2\n*E\n"})
+public final class TestKt {
+    public static final void main() {
+        CollectionsKt.listOf((Object[]) new String[]{"500 Internal Server Error", "404 Not Found"});
+    }
+
+    private static final void main$printProblemCount(List<String> list, Ref.IntRef clientErrors) {
+        List<String> $this$forEach$iv = list;
+        for (Object element$iv : $this$forEach$iv) {
+            String element = (String) element$iv;
+            if (StringsKt.startsWith$default(element, "4", false, 2, (Object) null)) {
+                clientErrors.element++;
+            }
+        }
+    }
+}
+```
+
+You can notice that our **printProblemCount** function became a static private function. This is expected. Also see that the code of the **forEach** function was just inserted. This is also expected cos the function has **inline** declaration.
+
+But there is a strange parameter - Ref.IntRef. What is it? Well actually this is our local variable.
+
+Here is this class declaration:
+
+```kotlin
+/* JADX INFO: loaded from: kotlin-stdlib-2.3.20.jar:kotlin/jvm/internal/Ref$IntRef.class */
+    public static final class IntRef implements Serializable {
+        public int element;
+
+        public String toString() {
+            return String.valueOf(this.element);
+        }
+    }
+```
+
+You can **element** member variable which is our local variable of main function !! No magic, all is quite simple. You can also see some other classes which are simmilar to 'IntRef' like 'LongRef', 'FloatRef' etc.
+
+Worth mentioning that there is also 'ObjectRef<T>' class for accessing and modification of local object variables:
+
+```kotlin
+/* JADX INFO: loaded from: kotlin-stdlib-2.3.20.jar:kotlin/jvm/internal/Ref$ObjectRef.class */
+    public static final class ObjectRef<T> implements Serializable {
+        public T element;
+
+        public String toString() {
+            return String.valueOf(this.element);
+        }
+    }
+```
+
+# Summary
+
+Lambda accesses local variables using a wrapper object which stores a reference to local variable or variable itself if it's a primitive.
+
+1. Compiler generates a wrapper object for every local variable which a lambda accesses.
+
+2. Compiler can insert code of a lamda function if a function has inline modified.
+
+3. The second is a good news as code can be a bit faster.
 
 
 
