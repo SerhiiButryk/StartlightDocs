@@ -11,7 +11,7 @@ import s4 from '../../../assets/s4.png';
 
 This guide covers the most interesting topics of Kotlin internals. It's a bit deeper dive in Kotlin code.
 
-## Lambda vs anonimus Kotlin classes
+## Lambda vs anonimus classes
 
 Did you know lambda and anonimus classes have different runtime cost?
 
@@ -294,7 +294,7 @@ public final class TestKt {
 
 You can notice that our **printProblemCount** function became a static private function. This is expected. Also see that the code of the **forEach** function was just inserted. This is also expected cos the function has **inline** declaration.
 
-But there is a strange parameter - Ref.IntRef. What is it? Well actually this is our local variable.
+But there is a strange parameter - **Ref.IntRef**. What is it? Well actually this is our local variable.
 
 Here is this class declaration:
 
@@ -309,7 +309,7 @@ Here is this class declaration:
     }
 ```
 
-You can **element** member variable which is our local variable of main function !! No magic, all is quite simple. You can also see some other classes which are simmilar to 'IntRef' like 'LongRef', 'FloatRef' etc.
+You can see **element** member variable which is our local variable of main function !! No magic, all is quite simple. You can also see some other classes which are simmilar to 'IntRef' like 'LongRef', 'FloatRef' etc.
 
 Worth mentioning that there is also 'ObjectRef' class for accessing and modification of local object variables:
 
@@ -330,9 +330,9 @@ Lambda accesses local variables using a wrapper object which stores a reference 
 
 1. Compiler generates a wrapper object for every local variable which a lambda accesses.
 
-2. Compiler can insert code of a lamda function if a function has inline modified.
+2. Compiler can insert code of a lamda function if a function has inline modifier.
 
-3. The second is a good news as code can be a bit faster.
+3. The second is good news as code can be a bit faster.
 
 
 

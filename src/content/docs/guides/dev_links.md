@@ -46,7 +46,14 @@ Tutorials about mobile development
 1. Decompilers
 
     1. [IDA](https://hex-rays.com/ida-free)
-    1. [Ghidra](https://ghidralite.com/)
+    2. [Ghidra](https://ghidralite.com/)
+    3. [Malimite (Swift, Objective-C)](https://github.com/LaurieWired/Malimite/tree/main)
+    4. [Jadx (Java, Kotlin)](https://github.com/skylot/jadx)
+
+3. Hex editor
+
+    1. [Hex fried](https://hexfiend.com/)
+    2. [ImHex](https://github.com/WerWolv/ImHex)
 
 2. Network
 
@@ -55,27 +62,21 @@ Tutorials about mobile development
     3. [Chales Http Proxy](https://www.charlesproxy.com/)
     4. [Wireshark](https://www.wireshark.org/ )
 
-    1. [TCP/IP](https://garykessler.net/library/tcpip.html)
-    2. [IPv6](https://garykessler.net/library/ipv6_exp.html)
-
-## Cryptography
-
-1. [Overview](https://garykessler.net/library/crypto.html)
-
-## Linux
-
-1. [Overview](http://linuxintro.org/wiki/Main_Page)
-
-2. [Shell (Bash) tutorials](https://tldp.org/LDP/abs/html/index.html) , [Bash cheet-sheet](https://devhints.io/bash)
-
 ## AI
 
 1. [Photo-to-Video](https://www.vidnoz.com/image-to-video-ai.html)
 
-## Basic knowledge
-
-1. [UML](https://www.youtube.com/watch?v=xObBUVDMbQs) , [Plant UML](https://real-world-plantuml.com/)
-
 ## Interview
 
 1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list
+
+## Other links
+
+1. [TCP/IP](https://garykessler.net/library/tcpip.html)
+2. [IPv6](https://garykessler.net/library/ipv6_exp.html)
+3. [Cryptography overview](https://garykessler.net/library/crypto.html)
+4. [Linux overview](http://linuxintro.org/wiki/Main_Page)
+5. [Shell (Bash) tutorials](https://tldp.org/LDP/abs/html/index.html)
+6. [Bash cheet-sheet](https://devhints.io/bash)
+7. [UML](https://www.youtube.com/watch?v=xObBUVDMbQs) 
+8. [Plant UML](https://real-world-plantuml.com/)
