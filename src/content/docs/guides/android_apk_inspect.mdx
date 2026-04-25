@@ -6,31 +6,30 @@ description: Debugging and decompiling Android APK files
 import { Image } from 'astro:assets';
 import s5 from '../../../assets/s5.png';
 import s6 from '../../../assets/s6.png';
-import s7 from '../../../assets/s6.png';
-import s8 from '../../../assets/s6.png';
-import s9 from '../../../assets/s6.png';
-import s10 from '../../../assets/s6.png';
+import s7 from '../../../assets/s7.png';
+import s8 from '../../../assets/s8.png';
+import s9 from '../../../assets/s9.png';
+import s10 from '../../../assets/s10.png';
 
 ## Introduction
 
-Debugging Android apps can be difficult if you are not familliar with the code or you can't modify
-apk file. This guide explains how to do it more easily.
+Debugging Android apps can be difficult if you are not familiar with the code or you can't modify the APK file. This guide explains how to do this more easily.
 
-## Decompile and rebuild apk
+## Decompile and rebuild APK
 
-1. Download 'android.py' tool
+1. Download the 'android.py' tool
 
 ```bash
 $ curl -o android.py https://github.com/SerhiiButryk/DevelopmentTools/blob/main/tools/android.py
 ```
 
-2. Grant execute permissions to 'android.py' tool
+2. Grant execute permissions to the 'android.py' tool
 
 ```bash
 $ chmod +x android.py
 ```
 
-3. Assuming you placed 'android.py' in the same directory as your APK file, decompile your APK:
+3. Assuming you have placed 'android.py' in the same directory as your APK file, decompile your APK:
 
 ```bash
 $ android.py -decomp <your file name>.apk
@@ -38,9 +37,9 @@ $ android.py -decomp <your file name>.apk
 
 Wait while the tool downloads all necessary dependencies. If there are no errors, check the 'output' directory.
 
-4. Modify sources
+4. Modify the sources
 
-5. Rebuild APK
+5. Rebuild the APK
 
 ```bash
 $ android.py -build <your folder with modified apk>
@@ -62,7 +61,7 @@ $ adb install <your file name>.apk
 
 **Preconditions:**
 
-1. The 'android:debuggable="true"' should be added
+1. Add 'android:debuggable="true"' to your application manifest.
 
 ```xml
 (...)
@@ -92,7 +91,7 @@ class MainActivity : ComponentActivity() {
 }
 ```
 
-OR if you don't have sources you can modify smali code and rebuild apk:
+OR, if you don't have the sources, you can modify the smali code and rebuild the APK:
 
 ```kotlin
 invoke-static {}, Landroid/os/Debug;->waitForDebugger()V
@@ -100,59 +99,59 @@ invoke-static {}, Landroid/os/Debug;->waitForDebugger()V
 
 **Steps to debug:**
 
-1. Launch emulator and install your apk.
+1. Launch the emulator and install your APK.
 
-2. Open installed apk using JADX.
+2. Open the installed APK using JADX.
 
 ```bash
 java -jar jadx.jar <your file name>.apk
 ```
 
-3. Set a braikpoint in JADX
+3. Set a breakpoint in JADX
 
-For that you should find a class, then open 'smali' view and open 'show dalvik bytecode'. 
+To do this, find the class, open the 'smali' view, and select 'Show Dalvik bytecode'.
 
 <Image src={s7} alt="" width="600" />
 
-After that you can set brakepoints right in the apk bytecode.
+After that, you can set breakpoints directly in the APK bytecode.
 
 <Image src={s8} alt="" width="600" />
 
-4. Launch app in emulator
+4. Launch the app in the emulator.
 
-5. Click on debug option in JADX, select process and double click on it. 
+5. Click on the debug option in JADX, select the process, and double-click on it.
 
 <Image src={s5} alt="" width="400" />
 
-The debugger should be attached to the running app process.
+The debugger should now be attached to the running app process.
 
 <Image src={s6} alt="" width="400" />
 
-6. Click on the run button
+6. Click the run button.
 
 <Image src={s9} alt="" width="400" />
 
-7. If all is fine, you'll see call stack , variable view and the process will stop ta your brackepoint. Now you can debug your app using JADX debug panel.
+7. If everything is set up correctly, you'll see the call stack, variable view, and the process will stop at your breakpoint. Now you can debug your app using the JADX debug panel.
 
 <Image src={s10} alt="" width="800" />
 
 **Troubleshoot:**
 
-If debuger doesn't get attached , it exits unexpectedly, then there is an issue with adb. Make sure adb connects and starts at 5037 port which is the default port.
+If the debugger doesn't attach or exits unexpectedly, there may be an issue with adb. Make sure adb is running and listening on port 5037, which is the default port.
 
-If the issue persists, check if  5037 port is not blocked by running:
+If the issue persists, check if port 5037 is not blocked by running:
 
 ```bash
 lsof -i :5037
 ```
 
-If there are some processes which also listens to or uses  5037 port then kill them and restart JADX debugger.
+If there are processes that are also listening to or using port 5037, kill them and restart the JADX debugger.
 
 ```bash
 kill -9 <PID>
 ```
 
-Also you can kill and restart adb server:
+You can also kill and restart the adb server:
 
 ```bash
 adb kill-server
