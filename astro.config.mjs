@@ -19,6 +19,7 @@ export default defineConfig({
 						{ label: 'Encoding (Charsets)', slug: 'guides/encoding_doc' },
 						{ label: 'Andoid debugging', slug: 'guides/android_apk_inspect' },
 						{ label: 'Kotlin bytecode', slug: 'guides/kotlin_bytecode' },
+						{ label: 'Android internals', slug: 'guides/android_internals' },
 
 					],
 				},

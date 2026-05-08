@@ -1,0 +1,167 @@
+---
+title: Android internals
+description: Android internals
+---
+
+import { Image } from 'astro:assets';
+import s11 from '../../../assets/s11.png';
+import s12 from '../../../assets/s12.png';
+import s13 from '../../../assets/s13.png';
+
+## Introduction
+
+This guide explains some common Android topic in depth so you can have a better undestating of Android OS overall.
+
+## Retention of ViewModel in Activity during config changes
+
+Let's find out how Android keeps ViewModel instances during Activity recreation. Let's start with a question - **Where do an instance of ViewModel gets stored exactly?**
+
+As an example we take a look at this snippet:
+
+```kotlin
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AppUI()
+        }
+    }
+}
+
+@Composable
+fun AppUI(modifier: Modifier = Modifier) {
+
+    val viewModel = viewModel<AppViewModel>()
+
+    AppTheme {
+        Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+            Content(
+                modifier = Modifier.padding(innerPadding),
+                viewModel = viewModel,
+            )
+        }
+    }
+}
+```
+
+Overall this diagram explains what is gonna happen: 
+
+<Image src={s11} alt="Result:" width="800" />
+
+But what is viewModelStoreOwner? Here it is:
+
+```kotlin
+
+public open class ViewModelStore { 
+
+    private val map = mutableMapOf<String, ViewModel>()
+
+(...)
+
+    public fun put(key: String, viewModel: ViewModel) {
+        val oldViewModel = map.put(key, viewModel)
+        oldViewModel?.clear()
+    }
+
+(...)
+
+    public operator fun get(key: String): ViewModel? {
+        return map[key]
+    }
+
+(...)
+
+}
+```
+
+No magic it is just a map which actuall stores instances of ViewModel that you use in the specific Activity instance. Ok that's fine. But map should be destroyed when Activity is destroyed, shouldn't it? 
+
+That's right! But there is another bit here! There is always a ViewModelStoreOwner which actually owns viewModelStoreOwner. If you look throught the ViewModelStoreOwner interface you'll see the comment - "A responsibility of an implementation of this interface is to retain owned ViewModelStore during the configuration changes". So who is an implementor? The implementor is our ComponentActivity class.
+
+Let's see what it is doing:
+
+```kotlin
+
+open class ComponentActivity() : 
+(...)
+ViewModelStoreOwner
+{ 
+(...)
+
+// OUR ViewModelStore IMPLEMENTATION
+private var _viewModelStore: ViewModelStore? = null
+
+(...)
+
+// Special Activity callback
+final override fun onRetainNonConfigurationInstance(): Any? {
+        // Maintain backward compatibility.
+        val custom = onRetainCustomNonConfigurationInstance()
+        var viewModelStore = _viewModelStore
+        
+        (...)
+
+        // OUR ViewModelStore instance gets wrapped with 'NonConfigurationInstances' instance
+        val nci = NonConfigurationInstances()
+        nci.custom = custom
+        nci.viewModelStore = viewModelStore
+        return nci
+    }
+
+}
+
+(...)
+
+// This is where OUR ViewModelStore instance gets restored
+private fun ensureViewModelStore() {
+        if (_viewModelStore == null) {
+            val nc = lastNonConfigurationInstance as NonConfigurationInstances?
+            if (nc != null) {
+                // Restore the ViewModelStore from NonConfigurationInstances
+                _viewModelStore = nc.viewModelStore
+            }
+            if (_viewModelStore == null) {
+                _viewModelStore = ViewModelStore()
+            }
+        }
+    }
+
+(...)
+```
+
+The core of ViewModel retention is **onRetainNonConfigurationInstance** call. It turns out that an object which is retured by **onRetainNonConfigurationInstance** is not destroyed but saved by the Android OS. 
+
+Let's dig deeper into this.
+
+1. The ActivityThread class calls **performDestroyActivity** when activity is going to destroyed.
+
+2. The **performDestroyActivity** calls ****retainNonConfigurationInstances**** on our application Activity instance.
+
+3. The result of this call gets saved in **lastNonConfigurationInstances** of **ActivityClientRecord**
+
+4. The **ActivityClientRecord** is a wrapper which holds specific Activity instance and some other info.
+
+5. The ActivityThread keeps **ActivityClientRecord** object in a map.
+
+6. After new activity is created, the ActivityThread class gives **lastNonConfigurationInstances** back to the new Activity.
+
+<Image src={s12} alt="Result:" width="800" />
+
+<Image src={s13} alt="Result:" width="800" />
+
+#Summary
+
+1. ViewModel is retained using special **NonConfigurationInstances** wrapper class.
+
+2. The ActivityThread class holds the actual instance of **NonConfigurationInstances** class.
+
+3. So the ActivityThread class is the point where ViewModel gets stored by Android OS.
+
+4. The ActivityThread class gives the instance of **NonConfigurationInstances** to the new created Activity.
+
+
+
+
+

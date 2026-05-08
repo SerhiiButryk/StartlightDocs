@@ -33,6 +33,10 @@ Tutorials about mobile development
 2. [Android Github reources](https://github.com/androiddevnotes/awesome-android-learning-resources)
 3. [Coroutines](https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/topics/coroutines-guide.md)
 
+Decompilers:
+
+[Jadx Java & Kotlin](https://github.com/skylot/jadx)
+
 ## JVM
 
 1. [JVM overview](https://www.geeksforgeeks.org/jvm-works-jvm-architecture/)
@@ -41,14 +45,22 @@ Tutorials about mobile development
 
 3. [JVM specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
 
+## IOS/Mac platform
+
+dyld_info - Inspect dynamic linker info of a binary file
+
+Decompilers:
+
+[Binary ninja](https://cloud.binary.ninja)
+[Malimite](https://github.com/LaurieWired/Malimite)
+[Hopper](https://www.hopperapp.com/)
+
 ## System debugging tools
 
-1. Decompilers
+1. Native decompilers
 
     1. [IDA](https://hex-rays.com/ida-free)
     2. [Ghidra](https://ghidralite.com/)
-    3. [Malimite (Swift, Objective-C)](https://github.com/LaurieWired/Malimite/tree/main)
-    4. [Jadx (Java, Kotlin)](https://github.com/skylot/jadx)
 
 3. Hex editor
 
@@ -68,7 +80,7 @@ Tutorials about mobile development
 
 ## Interview
 
-1. [Android](https://dou.ua/lenta/articles/interview-questions-android-developer/) - Question list
+1. [Android quiestions](https://dou.ua/lenta/articles/interview-questions-android-developer/)
 
 ## Other links
 
