@@ -494,25 +494,39 @@ Git diff tool -> git difftool
 
 [Detach (move) subdirectory into separate a Git repository](https://stackoverflow.com/questions/359424/detach-move-subdirectory-into-separate-git-repository/17864475#17864475)
 
-DELETE REMOTE BRANCH
+**Cloning a repo with submodules**
+
+```bash
+$ git clone /url/to/repo/with/submodules
+$ git submodule init
+$ git submodule update
+```
+
+**Add a submodule to a repo**
+
+```bash
+$ git submodule add https://bitbucket.org/jaredw/awesomelibrary
+```
+
+**Delete remote branch**
 
 ```bash
 git push origin --delete my_remote_branch
 ```
 
-PATCH
+**Patch**
 
 ```bash
 git format-patch -1 9921ac0990fc1afc0eb871a15554840aa724f894 -o patches
 ```
 
-SQUASH
+**Squash**
 
 ```bash
 git rebase -i HEAD~N
 ```
 
-CONFIG GLOBAL VARIABLES
+**Config global variables**
 
 ```bash
 git config --global user.name ""
@@ -520,25 +534,25 @@ git config --global user.email ""
 git config --list
 ```
 
-GIT HELP
+**Git help**
 
 ```bash
 git help <verb>
 ```
 
-GIT INITIALIZE EMPTY REPO
+**Initialize empty repo**
 
 ```bash
 git init
 ```
 
-TO STOP TRACK THE REPO JUST REMOVE .git DIRECTORY
+**Stop tracking the repo by removing .git directory**
 
 ```bash
 rm -rf .git
 ```
 
-ADD ALL CURRENTLY UNTRACHED OR CHANGED FILES TO STAGE AREA
+**Add all currently untracked or changed files to stage area**
 
 ```bash
 git add -A
@@ -548,45 +562,45 @@ git add -u (updated) - not add untracked files
 git add .
 ```
 
-GREATE BRANCH
+**Create branch**
 
 ```bash
 git branch <branch-name>
 git checkout <branch-name>
 ```
 
-REMOVE FILE FROM A STAGE AREA
+**Remove file from a stage area**
 
 ```bash
 git reset <file>
 git reset
 ```
 
-CLONE REPO
+**Clone repo**
 
 ```bash
 git clone <url> <where to clone>
 ```
 
-VIEW REMOTE REPO INFO
+**View remote repo info**
 
 ```bash
 git remote -v
 ```
 
-VIEW LOCAL AND REMOTE BRANCHES
+**View local and remote branches**
 
 ```bash
 git branch -a
 ```
 
-PUSH BRANCH TO REMOTE REPO
+**Push branch to remote repo**
 
 ```bash
 git push -u <remote-repo> <local-branch>
 ```
 
-MERGE BRANCH INTO MASTER
+**Merge branch into master**
 
 ```bash
 git merge <branch-name>
@@ -595,26 +609,26 @@ git pull <remote-repo-name> <branch-name>
 git push <remote-repo-name> <branch-name>
 ```
 
-DELETE BRANCH LOCALY OR REMOTLY
+**Delete branch locally or remotely**
 
 ```bash
 git branch -d <branch-name>
 git push origin --delete <branch-name>
 ```
 
-SHOW FILES WHICH WAS MEANT TO COMMIT
+**Show files which were meant to commit**
 
 ```bash
 git log --stat
 ```
 
-CHERRY-PICK
+**Cherry-pick**
 
 ```bash
 git cherry-pick <hash>
 ```
 
-RESET COMMIT
+**Reset commit**
 
 ```bash
 git reset --soft <hash>
@@ -622,20 +636,19 @@ git reset [mixed reset]
 git reset --hard <hash>
 ```
 
-GET RID OFF UNTRACKED FILES/DIRECTORIES
+**Get rid of untracked files/directories**
 
 ```bash
 git clean -df
 ```
 
-SHOW your commits in the order when you last reference them
+**Show your commits in the order when you last reference them**
 
 ```bash
 git reflog
 ```
 
-STASH
-CRETATE STASH
+**Stash**
 
 ```bash
 git stash save "message"
@@ -650,13 +663,13 @@ git stash drop <id>
 git stash clear
 ```
 
-REVERT COMMIT WITHOUT CHANGING HISTORY
+**Revert commit without changing history**
 
 ```bash
 git revert [git-hash-commit]
 ```
 
-Revert changes
+**Revert changes**
 
 ```bash
 git checkout — <file_name>
@@ -691,6 +704,8 @@ Example of string patterns:
 :::
 
 ## Gradle
+
+**General tasks**
 
 1. Run test
 
@@ -730,6 +745,24 @@ With flags
 ./gradlew -q app:dependencies
 ./gradlew app:resolvableConfigurations
 ```
+
+**Verification tasks**
+
+ 1. Ktlint run:
+ ./gradlew ktlintchec
+
+ 2. Android lint run:
+ ./gradlew lint
+
+ 3. Fix style Ktlint issues:
+ ./gradlew ktlintFormat
+
+4. Fresh detekt run:
+./gradlew detekt
+
+This may be required:
+./gradlew detektGenerateConfig
+./gradlew detektBaseline
 
 ## Grep
 
