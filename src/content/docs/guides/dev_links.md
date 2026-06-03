@@ -9,9 +9,26 @@ This guide has a quick reference for the developers, collecting useful links, to
 
 ## Code search engins
 
-1. [android](https://cs.android.com/) - Android OS
+1. [Android OS](https://cs.android.com/)
 
-3. [sourcegraph](https://sourcegraph.com/search) - Whatever you want
+3. [Source graph](https://sourcegraph.com/search)
+
+4. [Google code search](https://cs.opensource.google/?utm_source=chatgpt.com)
+
+5. [Grep code search](https://grep.app/search?q=dev.gitlive.firebase.Firebase)
+
+6. [Github search](https://github.com/)
+
+## AI agents
+
+1. [ChatGPT](https://chatgpt.com/)
+
+2. [Gemini](https://gemini.google.com/)
+
+3. [DeepSeek](https://www.deepseek.com/en/)
+
+4. [Codex](https://openai.com/codex/)
+
 
 ## Android platform
 
@@ -47,12 +64,14 @@ Decompilers:
 
 ## IOS/Mac platform
 
-dyld_info - Inspect dynamic linker info of a binary file
+[dyld_info](https://keith.github.io/xcode-man-pages/dyld_info.1.html) - Inspect dynamic linker info of a binary file
 
 Decompilers:
 
 [Binary ninja](https://cloud.binary.ninja)
+
 [Malimite](https://github.com/LaurieWired/Malimite)
+
 [Hopper](https://www.hopperapp.com/)
 
 ## System debugging tools

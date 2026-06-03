@@ -221,6 +221,18 @@ $ curl -x localhost:8888 -k http://example.com
 
 ## ADB (Android debugging tool)
 
+Pull a tombstone:
+
+```bash
+adb pull /data/tombstones/ .
+```
+
+Pull a anr or thread dump:
+
+```bash
+adb pull /data/anr/trace_03 ./trace_03.txt
+```
+
 CPU usage:
 
 ```bash
