@@ -20,6 +20,7 @@ export default defineConfig({
 						{ label: 'Andoid debugging', slug: 'guides/android_apk_inspect' },
 						{ label: 'Kotlin bytecode', slug: 'guides/kotlin_bytecode' },
 						{ label: 'Android internals', slug: 'guides/android_internals' },
+						{ label: 'Swift compiler', slug: 'guides/swift_compiler' },
 
 					],
 				},

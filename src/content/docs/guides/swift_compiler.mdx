@@ -1,0 +1,141 @@
+---
+title: Swift compiler
+description: Swift compiler
+---
+
+## Introduction
+
+A bit deep dive into Swift language and it actually works
+
+## Compilation process
+
+General compilation process looks like this:
+
+      .swift
+
+        ⬇️
+
+       Parse
+
+        ⬇️
+
+  AST (Abstract syntax tree)
+
+        ⬇️
+
+  Semantic analysis
+
+        ⬇️
+
+  SIL Gen (Lowering phase 1)
+
+        ⬇️
+
+  SIL Optimization
+
+        ⬇️
+
+  LLVM IR Gen (Lowering phase 2)
+
+        ⬇️
+
+  LLVM IR Optimization
+
+        ⬇️
+
+  LLVM Backend
+
+        ⬇️
+
+  .executable  
+
+  In a nutshell we transform Swift code to a machine code. However, the first step is a transformation to Swift intermadiate representation. The second step is a transformation to LLVM intermadiate representation. Then it goes to LLVM Backend which generates machine code for specific chip and CPU arhitecture.
+
+  :::note
+  Lowering is the process of is the process of taking high-level, human-readable code and systematically transforming it into progressively lower-level, more explicit representations closer to what a computer CPU actually understands. 
+  :::
+
+  Also note that:
+  
+  :::note
+  We can actually see what SIL looks like so we can understand Swift better.
+  :::
+
+## SIL 
+
+Use this command to explore SIL:
+
+```bash
+$ swiftc -emit-sil samples/Basics/Sources/Test.swift > Test.sil
+```
+
+Where 'Test.swift' is your Swift code and 'Test.sil' is the generated SIL.
+
+To better undestand the generated SIL use this note:
+
+  :::note
+  
+  Main entry block:
+
+    ```swift
+        // main
+        // Isolation: unspecified
+        sil @main : $@convention(c) (Int32, UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>) -> Int32 {
+        bb0(%0 : $Int32, %1 : $UnsafeMutablePointer<Optional<UnsafeMutablePointer<Int8>>>):
+        
+        }
+    ```  
+
+  Global variables:
+
+    ```swift
+        @_hasStorage @_hasInitialValue let person: Person { get }
+        // person
+        sil_global hidden [let] @$s4Test6personAA6PersonVvp : $Person
+    ``` 
+
+  Struct definition:
+
+    ```swift
+        struct Person {
+            @_hasStorage @_hasInitialValue var name: String { get set }
+            @_hasStorage @_hasInitialValue var age: Int { get set }
+            init()
+            init(name: String = "", age: Int = 0)
+        }
+    ``` 
+
+  Mangled names:
+
+    ```swift
+    @$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC
+    ``` 
+
+  or 
+
+    ```swift
+    @$s4Test6personAA6PersonVvp
+    ``` 
+
+  Generated functions or code blocks:
+    
+    ```swift
+    // default argument 1 of Person.init(name:age:)
+    // Isolation: unspecified
+    sil hidden @$s4Test6PersonV4name3ageACSS_SitcfcfA0_ : $@convention(thin) () -> Int {
+    bb0:
+    %0 = integer_literal $Builtin.Int64, 0          // user: %1
+    %1 = struct $Int (%0)                           // user: %2
+    return %1                                       // id: %2
+    } // end sil function '$s4Test6PersonV4name3ageACSS_SitcfcfA0_'  
+    ``` 
+
+  :::
+
+  Damangle symbols:
+
+```bash
+  swift-demangle \$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC  
+  cat my_raw_sil_output.sil | swift-demangle > demangled_output.sil
+```
+
