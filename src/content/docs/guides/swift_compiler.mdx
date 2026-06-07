@@ -5,7 +5,7 @@ description: Swift compiler
 
 ## Introduction
 
-A bit deep dive into Swift language and it actually works
+A deep dive into how the Swift language compiler actually works
 
 ## Compilation process
 
@@ -49,10 +49,10 @@ General compilation process looks like this:
 
   .executable  
 
-  In a nutshell we transform Swift code to a machine code. However, the first step is a transformation to Swift intermadiate representation. The second step is a transformation to LLVM intermadiate representation. Then it goes to LLVM Backend which generates machine code for specific chip and CPU arhitecture.
+  In a nutshell we transform Swift code to machine code. However, the first step is a transformation to Swift intermediate representation. The second step is a transformation to LLVM intermediate representation. Then it goes to LLVM Backend which generates machine code for specific chip and CPU architecture.
 
   :::note
-  Lowering is the process of is the process of taking high-level, human-readable code and systematically transforming it into progressively lower-level, more explicit representations closer to what a computer CPU actually understands. 
+  Lowering is the process of taking high-level, human-readable code and systematically transforming it into progressively lower-level, more explicit representations closer to what a computer CPU actually understands. 
   :::
 
   Also note that:
@@ -71,7 +71,7 @@ $ swiftc -emit-sil samples/Basics/Sources/Test.swift > Test.sil
 
 Where 'Test.swift' is your Swift code and 'Test.sil' is the generated SIL.
 
-To better undestand the generated SIL use this note:
+To better understand the generated SIL use this note:
 
   :::note
   
@@ -129,6 +129,13 @@ To better undestand the generated SIL use this note:
     return %1                                       // id: %2
     } // end sil function '$s4Test6PersonV4name3ageACSS_SitcfcfA0_'  
     ``` 
+
+    Instructions:
+
+    ```swift
+    %11 = integer_literal $Builtin.Int64, 30        // user: %12
+    %12 = struct $Int (%11)                         // user: %14
+    ```
 
   :::
 
