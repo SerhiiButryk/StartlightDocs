@@ -7,6 +7,50 @@ description: Unix tools for common dev tasks
 
 This guide highlights essential Unix utilities and debugger commands for everyday development workflows. Use it to quickly reference powerful command-line tricks and streamline common tasks.
 
+## python
+
+Create virual env where '.venv' is your folder name:
+
+```bash
+$ python3 -m venv .venv 
+```
+
+Activate virual env:
+
+```bash
+$ source venv/bin/activate
+```
+
+Deactivate python virual env:
+
+```bash
+$ deactivate
+```
+
+List installed packages:
+
+```bash
+$ pip list
+```
+
+Install deps:
+
+```bash
+$ python3 -m pip install -r requirements.txt
+```
+
+Where 'requirements.txt' is
+
+// Content of 'requirements.txt'
+'langchain 
+langchain-community 
+langchain-google-genai 
+python-dotenv
+pydantic
+duckduckgo-search
+beautifulsoup4  
+ddgs'
+
 ## xargs
 
 [man page](https://man7.org/linux/man-pages/man1/xargs.1.html)

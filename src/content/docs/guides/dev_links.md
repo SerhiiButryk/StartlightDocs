@@ -19,7 +19,9 @@ This guide has a quick reference for the developers, collecting useful links, to
 
 6. [Github search](https://github.com/)
 
-## AI agents
+## AI
+
+General resources:
 
 1. [ChatGPT](https://chatgpt.com/)
 
@@ -28,6 +30,14 @@ This guide has a quick reference for the developers, collecting useful links, to
 3. [DeepSeek](https://www.deepseek.com/en/)
 
 4. [Codex](https://openai.com/codex/)
+
+5. [Photo-to-Video](https://www.vidnoz.com/image-to-video-ai.html)
+
+6. [Google AI models](https://ai.google.dev/gemini-api/docs/models)
+
+AI frameworks:
+
+1. [Langchain](https://docs.langchain.com/oss/python/langchain/overview)
 
 
 ## Android platform
@@ -62,6 +72,8 @@ Decompilers:
 
 3. [JVM specification](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html#jvms-1.2)
 
+4. [JVM instruction set](https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-6.html)
+
 ## IOS/Mac platform
 
 [dyld_info](https://keith.github.io/xcode-man-pages/dyld_info.1.html) - Inspect dynamic linker info of a binary file
@@ -92,10 +104,6 @@ Decompilers:
     2. [Postman](https://www.postman.com/)
     3. [Chales Http Proxy](https://www.charlesproxy.com/)
     4. [Wireshark](https://www.wireshark.org/ )
-
-## AI
-
-1. [Photo-to-Video](https://www.vidnoz.com/image-to-video-ai.html)
 
 ## Interview
 
