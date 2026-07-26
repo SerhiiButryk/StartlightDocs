@@ -42,14 +42,20 @@ $ python3 -m pip install -r requirements.txt
 Where 'requirements.txt' is
 
 // Content of 'requirements.txt'
-'langchain 
+
+langchain 
+
 langchain-community 
+
 langchain-google-genai 
-python-dotenv
-pydantic
-duckduckgo-search
-beautifulsoup4  
-ddgs'
+
+...
+
+Run proto compiler:
+
+```bash
+python3 -m grpc.tools.protoc -I. --python_out=. proto/messages.proto
+```
 
 ## xargs
 
