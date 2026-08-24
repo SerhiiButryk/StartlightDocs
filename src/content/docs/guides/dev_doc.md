@@ -808,6 +808,13 @@ With flags
 ./gradlew app:resolvableConfigurations
 ```
 
+6. Dependency analysis
+
+```bash
+./gradlew :desktopApp:dependencyInsight --configuration runtimeClasspath --dependency protobuf-java
+./gradlew :desktopApp:dependencies --configuration runtimeClasspath | grep -E "grpc|protobuf"
+```
+
 **Verification tasks**
 
  1. Ktlint run:
